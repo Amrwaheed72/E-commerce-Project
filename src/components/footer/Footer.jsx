@@ -1,8 +1,10 @@
-import { Box, Typography, Link, IconButton, Grid } from '@mui/material';
+import { Box, Typography, IconButton, Grid } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
+
+import {Link} from 'react-router-dom'
 
 const Footer = () => {
     return (
@@ -33,19 +35,19 @@ const Footer = () => {
                     <Typography variant="h6" gutterBottom>
                         Quick Links
                     </Typography>
-                    <Link href="/" color="inherit" underline="hover">
+                    <Link to="/" style={{color: "white", textDecoration: "none"}}>
                         Home
                     </Link>
                     <br />
-                    <Link href="/about" color="inherit" underline="hover">
+                    <Link to="/about" style={{color: "white", textDecoration: "none"}}>
                         About
                     </Link>
                     <br />
-                    <Link href="/services" color="inherit" underline="hover">
+                    <Link to="/services" style={{color: "white", textDecoration: "none"}}>
                         Services
                     </Link>
                     <br />
-                    <Link href="/contact" color="inherit" underline="hover">
+                    <Link to="/contact" style={{color: "white", textDecoration: "none"}}>
                         Contact
                     </Link>
                 </Grid>
