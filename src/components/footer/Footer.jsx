@@ -20,7 +20,7 @@ const Footer = () => {
         >
             <Grid container spacing={4} justifyContent="center">
                 {/* Section 1: About Us */}
-                <Grid item xs={12} sm={4}>
+                <Grid item xs={12} sm={5}>
                     <Typography variant="h6" gutterBottom>
                         About Us
                     </Typography>
@@ -31,7 +31,7 @@ const Footer = () => {
                 </Grid>
 
                 {/* Section 2: Quick Links */}
-                <Grid item xs={12} sm={4}>
+                <Grid item xs={12} sm={2}>
                     <Typography variant="h6" gutterBottom>
                         Quick Links
                     </Typography>
@@ -40,7 +40,7 @@ const Footer = () => {
                     </Link>
                     <br />
                     <Link to="/about" style={{color: "white", textDecoration: "none"}}>
-                        About
+                        About Us
                     </Link>
                     <br />
                     <Link to="/services" style={{color: "white", textDecoration: "none"}}>
@@ -53,7 +53,7 @@ const Footer = () => {
                 </Grid>
 
                 {/* Section 3: Follow Us */}
-                <Grid item xs={12} sm={4}>
+                <Grid item xs={12} sm={2}>
                     <Typography variant="h6" gutterBottom>
                         Follow Us
                     </Typography>

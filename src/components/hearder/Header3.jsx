@@ -7,7 +7,7 @@ import { useState } from "react";
 import WindowIcon from '@mui/icons-material/Window';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useTheme } from "@emotion/react";
+import { useTheme} from "@emotion/react";
 import SportsBasketballIcon from '@mui/icons-material/SportsBasketball';
 import DevicesIcon from '@mui/icons-material/Devices';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
@@ -20,6 +20,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import LINKS from "./LINKS"
+import { Link } from 'react-router-dom';
 
 const Header3 = () => {
 
@@ -121,13 +122,43 @@ const Header3 = () => {
       </Box>
 
       {useMediaQuery('(min-width:1200px)') && (
-        <Stack gap={10} direction={"row"} alignItems={"center"} >
-          <LINKS title={"Home"} />
-          <LINKS title={"Menu"} />
-          <LINKS title={"Fullscreen Menu"} />
-          <LINKS href="/about" title={"ِAbout Us"} />
+        <Stack gap={10} direction={"row"} alignItems={"center"}>
+          
+
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+              <Button  component={Link} to="/" sx={{ color: theme.palette.text.primary }}>
+              Home
+              </Button>
+          </Box>
+          
           <LINKS title={"Pages"} />
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          
+              <Button  component={Link} to="/about" sx={{ color: theme.palette.text.primary }}>
+                About us
+              </Button>
+          
+          </Box>
+
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          
+              <Button  component={Link} to="/contact" sx={{ color: theme.palette.text.primary }}>
+              Contact us
+              </Button>
+          
+          </Box>
+
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          
+              <Button  component={Link} to="/profile" sx={{ color: theme.palette.text.primary }}>
+              Profile
+              </Button>
+          
+          </Box>
+          {/* <Link to='/about' style={{ textDecoration: 'none', color: 'black' }} className="header">{"About us"}</Link> */}
+          
         </Stack>
+
       )}
 
 
@@ -148,13 +179,11 @@ const Header3 = () => {
           <IconButton sx={{ ":hover": { color: "red", rotate: "360deg", transition: "0.3s" }, position: "absolute", top: 0, right: 10 }} onClick={toggleDrawer("top", false)} >
             <Close />
           </IconButton>
-
           {[
-            { mainLink: "Home", subLink: ["link1", "link2", "link3"] },
-            { mainLink: "menu", subLink: ["link1", "link2", "link3"] },
-            { mainLink: "Fullscreen menu", subLink: ["link1", "link2", "link3"] },
-            { mainLink: "Home", subLink: ["link1", "link2", "link3"] },
-            { mainLink: "pages", subLink: ["link1", "link2", "link3"] },
+            { mainLink: "Home", subLink: ["Market", "Gadget", "fashion"] },
+            { mainLink: "menu", subLink: ["User Account", "Products", "Orders", "Sale Page"] },
+            { mainLink: "Fullscreen menu", subLink: ["Electronics", "Fashion", "Book", "Sports"] },
+            { mainLink: "pages", subLink: ["Sale page", "Shop", "Vendor"] },
           ].map((item) => {
             return (
               <Accordion key={item.mainLink} elevation={0} sx={{ bgcolor: "initial" }}>

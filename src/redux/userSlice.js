@@ -5,18 +5,25 @@ export const signupUser = createAsyncThunk(
   'user/signup',
   async (userData, { rejectWithValue }) => {
     try {
+      console.log('User Data:', userData);  // Debugging line
       const users = JSON.parse(localStorage.getItem('users') || '[]');
+      console.log('Users Before:', users);  // Debugging line
+      
       if (users.find(user => user.email === userData.email)) {
         throw new Error('User already exists');
       }
+
       users.push(userData);
       localStorage.setItem('users', JSON.stringify(users));
+      console.log('Users After:', users);  // Debugging line
+
       return userData;
     } catch (error) {
       return rejectWithValue(error.message);
     }
   }
 );
+
 
 // Async thunk for user login
 export const loginUser = createAsyncThunk(

@@ -31,8 +31,26 @@ const AddProduct = () => {
             rating,
         };
 
+        const handler = async () => {
+            try {
+                const res = await fetch("http://localhost:5000/products", {
+                  method: "POST",
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(newProduct),
+                });
+          
+                if (res.ok) {
+                    console.log(await res.json())
+                  return await res.json();
+                } else {
+                  throw new Error('Failed to add new product');
+                }
+              } catch (error) {
+                return new Error(error.message);
+              }
+        }
         dispatch(addProduct(newProduct));
-
+        handler()
         // Reset form fields
         setProductName('');
         setDescription('');

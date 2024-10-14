@@ -48,10 +48,19 @@ const SignupCard = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isEmailValid && isPasswordMatch && passwordCriteria.hasLetter && passwordCriteria.hasNumber && passwordCriteria.hasSpecialChar) {
-      // @ts-ignore
+    if (
+      isEmailValid &&
+      isPasswordMatch &&
+      passwordCriteria.hasLetter &&
+      passwordCriteria.hasNumber &&
+      passwordCriteria.hasSpecialChar
+    ) {
+      // Dispatch the signup action
       const result = await dispatch(signupUser({ name, email, password }));
+
       if (!result.error) {
+        // Store user data in local storage
+        localStorage.setItem('userData', JSON.stringify({ name, email }));
         navigate('/login');
       }
     }

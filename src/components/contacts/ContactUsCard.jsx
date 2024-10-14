@@ -1,110 +1,75 @@
-import { useState } from 'react';
-import { Card, CardContent, TextField, Typography, Button } from '@mui/material';
-// import { useTheme } from '@mui/material/styles';
+import { Typography, Button, TextField, Container, Grid, Box, Paper } from '@mui/material';
 
 const ContactUsCard = () => {
-  //   const theme = useTheme(); // For detecting light/dark mode
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('');
-  const [message, setMessage] = useState('');
-  const [errors, setErrors] = useState({
-    email: false,
-    subject: false,
-    message: false,
-  });
-
-  const handleNameChange = (e) => setName(e.target.value);
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handleSubjectChange = (e) => setSubject(e.target.value);
-  const handleMessageChange = (e) => setMessage(e.target.value);
-
-  const isEmailValid = email === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newErrors = {
-      email: !isEmailValid,
-      subject: subject === '',
-      message: message === '',
-    };
-    setErrors(newErrors);
-
-    if (!newErrors.email && !newErrors.subject && !newErrors.message) {
-      // Submission logic can be added here later
-      console.log('Form submitted:', { name, email, subject, message });
-    }
-  };
-
   return (
-    <div className="botato" style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      height: "100vh"
-    }}>
-      <Card sx={{ maxWidth: 500, margin: 'auto', marginTop: '10vh', padding: 2 }}>
-        <CardContent>
-          <Typography variant="h5" align="center">Contact Us</Typography>
-          <form onSubmit={handleSubmit}>
-            <TextField
-              label="Name"
-              type="text"
-              value={name}
-              onChange={handleNameChange}
-              fullWidth
-              margin="normal"
-            />
-
-            <TextField
-              label="Email"
-              type="email"
-              value={email}
-              onChange={handleEmailChange}
-              fullWidth
-              margin="normal"
-              error={errors.email}
-              helperText={errors.email ? 'Please enter a valid email' : ''}
-            />
-
-            <TextField
-              label="Subject"
-              type="text"
-              value={subject}
-              onChange={handleSubjectChange}
-              fullWidth
-              margin="normal"
-              error={errors.subject}
-              helperText={errors.subject ? 'Subject is required' : ''}
-              required
-            />
-
-            <TextField
-              label="Message"
-              type="text"
-              value={message}
-              onChange={handleMessageChange}
-              fullWidth
-              margin="normal"
-              multiline
-              rows={4}
-              error={errors.message}
-              helperText={errors.message ? 'Message is required' : ''}
-              required
-            />
-
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              fullWidth
-              sx={{ marginTop: 2 }}
-            >
-              Send Message
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
+    <div>
+      <Container>
+        <Box my={4} borderTop={1} borderColor="grey.300" pt={4}>
+          <Grid container spacing={2} alignItems="center" style={{ minHeight: '0vh' }}>
+            <Grid item xs={12} md={6}>
+              <Typography variant="h3" component="h1" gutterBottom>
+                Contact Us
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                Need to get in touch with us? Fill out the form with your inquiry or find the department you’d like to contact below.
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Paper elevation={3} style={{ padding: '24px', minHeight: '450px' }}>
+                <form noValidate autoComplete="off">
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        required
+                        id="firstName"
+                        name="firstName"
+                        label="First name"
+                        fullWidth
+                        autoComplete="given-name"
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        required
+                        id="lastName"
+                        name="lastName"
+                        label="Last name"
+                        fullWidth
+                        autoComplete="family-name"
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        required
+                        id="email"
+                        name="email"
+                        label="Email"
+                        fullWidth
+                        autoComplete="email"
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        id="message"
+                        name="message"
+                        label="What can we help you with?"
+                        multiline
+                        rows={6}
+                        fullWidth
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Button variant="contained" color="primary" type="submit" size="large" fullWidth>
+                        Submit
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </form>
+              </Paper>
+            </Grid>
+          </Grid>
+        </Box>
+      </Container>
     </div>
   );
 };

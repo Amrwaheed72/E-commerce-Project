@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, TextField, Typography, Button, Checkbox, FormControlLabel, IconButton, InputAdornment } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const LoginCard = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // @ts-ignore
+
     const { error, loading, isLoggedIn } = useSelector((state) => state.user);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -26,15 +26,16 @@ const LoginCard = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (isEmailValid && password) {
-            // @ts-ignore
             await dispatch(loginUser({ email, password }));
         }
     };
 
-    // Redirect to home page if logged in
-    if (isLoggedIn) {
-        navigate('/');
-    }
+    // Navigate to home page after successful login
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate('/');
+        }
+    }, [isLoggedIn, navigate]);
 
     return (
         <div className="botato" style={{
@@ -44,65 +45,65 @@ const LoginCard = () => {
             flexDirection: "column",
             height: "100vh",
         }}>
-        <Card sx={{ maxWidth: 400, margin: 'auto', marginTop: '10vh', padding: 2 }}>
-            <CardContent>
-                <Typography variant="h5" align="center">Login</Typography>
-                {error && <Typography color="error">{error}</Typography>}
-                <form onSubmit={handleSubmit}>
-                    <TextField
-                        label="Email"
-                        type="email"
-                        value={email}
-                        onChange={handleEmailChange}
-                        fullWidth
-                        margin="normal"
-                        error={!isEmailValid}
-                        helperText={isEmailValid ? '' : 'Please enter a valid email'}
-                    />
+            <Card sx={{ maxWidth: 400, margin: 'auto', marginTop: '10vh', padding: 2 }}>
+                <CardContent>
+                    <Typography variant="h5" align="center">Login</Typography>
+                    {error && <Typography color="error">{error}</Typography>}
+                    <form onSubmit={handleSubmit}>
+                        <TextField
+                            label="Email"
+                            type="email"
+                            value={email}
+                            onChange={handleEmailChange}
+                            fullWidth
+                            margin="normal"
+                            error={!isEmailValid}
+                            helperText={isEmailValid ? '' : 'Please enter a valid email'}
+                        />
 
-                    <TextField
-                        label="Password"
-                        type={showPassword ? 'text' : 'password'}
-                        value={password}
-                        onChange={handlePasswordChange}
-                        fullWidth
-                        margin="normal"
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="end">
-                                    <IconButton onClick={handleClickShowPassword} edge="end">
-                                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
+                        <TextField
+                            label="Password"
+                            type={showPassword ? 'text' : 'password'}
+                            value={password}
+                            onChange={handlePasswordChange}
+                            fullWidth
+                            margin="normal"
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton onClick={handleClickShowPassword} edge="end">
+                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
 
-                    <FormControlLabel
-                        control={<Checkbox checked={rememberMe} onChange={handleRememberMeChange} />}
-                        label="Remember me"
-                    />
+                        <FormControlLabel
+                            control={<Checkbox checked={rememberMe} onChange={handleRememberMeChange} />}
+                            label="Remember me"
+                        />
 
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            fullWidth
+                            sx={{ marginTop: 2 }}
+                            disabled={loading}
+                        >
+                            {loading ? 'Logging in...' : 'Login'}
+                        </Button>
+                    </form>
                     <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
+                        onClick={() => navigate('/signup')}
                         fullWidth
-                        sx={{ marginTop: 2 }}
-                        disabled={loading}
+                        sx={{ marginTop: 1 }}
                     >
-                        {loading ? 'Logging in...' : 'Login'}
+                        Do not have an account? Sign up
                     </Button>
-                </form>
-                <Button
-                    onClick={() => navigate('/signup')}
-                    fullWidth
-                    sx={{ marginTop: 1 }}
-                >
-                    Do not have an account? Sign up
-                </Button>
-            </CardContent>
-        </Card>
+                </CardContent>
+            </Card>
         </div>
     );
 };

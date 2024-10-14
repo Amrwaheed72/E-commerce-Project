@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -11,10 +11,16 @@ import {
   Tabs,
   Tab,
   Paper,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from '@mui/material';
 
 const ProductDetail = () => {
   const [tabValue, setTabValue] = useState(0);
+  const [openDialog, setOpenDialog] = useState(false);
 
   // بيانات المنتج
   const product = {
@@ -22,8 +28,7 @@ const ProductDetail = () => {
     rating: '★★★★★',
     reviewsCount: 0,
     price: 350.0,
-      stockStatus: 'Stock Available',
-     
+    stockStatus: 'Stock Available',
     image: 'Rolex1.jpg', // تأكد من وجود الصورة في مجلد public/images
     additionalImages: ['Rolex2.jpg', 'Rolex3.jpg'], // تأكد من وجودها
     options: ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
@@ -41,6 +46,31 @@ const ProductDetail = () => {
 
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
+  };
+
+  const handleAddToCartClick = () => {
+    if (!isUserLoggedIn()) { // Replace with your own login check
+      setOpenDialog(true);
+    } else {
+      // Call your add to cart logic here
+      // For example: addToCart(product);
+      console.log("Product added to cart:", product);
+    }
+  };
+
+  const handleDialogClose = (redirectToLogin) => {
+    setOpenDialog(false);
+    if (redirectToLogin) {
+      // Redirect to login page (update the path as needed)
+      window.location.href = '/login'; // Change this to your login page route
+    }
+  };
+
+  const isUserLoggedIn = () => {
+    // Implement your user login check here
+    // This is just a mock example; replace with actual logic
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user !== null; // or however you check if a user is logged in
   };
 
   return (
@@ -82,7 +112,7 @@ const ProductDetail = () => {
                 {product.title}
               </Typography>
               <Typography variant="body1" color="text.secondary">
-                              Rated:<span style={{ color:"gold" }}>{product.rating}</span>  ({product.reviewsCount})
+                Rated:<span style={{ color: "gold" }}>{product.rating}</span>  ({product.reviewsCount})
               </Typography>
               <Divider sx={{ margin: '10px 0' }} />
               <Typography variant="h6" color="error">
@@ -95,6 +125,7 @@ const ProductDetail = () => {
                 variant="contained"
                 color="error"
                 sx={{ marginTop: 2, backgroundColor: '#d23f57' }}
+                onClick={handleAddToCartClick}
               >
                 Add To Cart
               </Button>
@@ -115,7 +146,7 @@ const ProductDetail = () => {
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, marginTop: 1 }}>
                 {product.types.map((type, index) => (
-                  <Button key={index} variant="outlined" color="error"  >
+                  <Button key={index} variant="outlined" color="error">
                     {type}
                   </Button>
                 ))}
@@ -160,6 +191,24 @@ const ProductDetail = () => {
           Consider adding these items to your purchase!
         </Typography>
       </Paper>
+
+      {/* Confirmation Dialog */}
+      <Dialog open={openDialog} onClose={() => handleDialogClose(false)}>
+        <DialogTitle>{"Login Required"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            You have to log in first. Do you want to go to the login page?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => handleDialogClose(false)} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={() => handleDialogClose(true)} color="primary">
+            Go To Login
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };

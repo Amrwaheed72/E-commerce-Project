@@ -1,5 +1,6 @@
+
 import { Box, Button, Container, Dialog, IconButton, Rating, Stack, Typography, useTheme } from "@mui/material";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Card from '@mui/material/Card';
@@ -7,35 +8,29 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { Close } from "@mui/icons-material";
+import { Close, ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import ProductDetails from "./ProductDetails";
-import { useSelector } from "react-redux"; // Import hooks
-// import { setProducts } from "../../redux/productSlice"; // Import the action from the product slice
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { images } from '../../images';
 
-// import { allProducts } from '../../products';
 const Main = () => {
     const [alignment, setAlignment] = useState('left');
     const [open, setOpen] = useState(false);
-    const [selectedProduct, setSelectedProduct] = useState(null); // State to hold selected product data
+    const [selectedProduct, setSelectedProduct] = useState(null);
+    const carouselRef = useRef(); // مرجع لمحتوى الكاروسيل
+
     const theme = useTheme();
-
-    // Redux hooks
-    // const dispatch = useDispatch();
     // @ts-ignore
-    const products = useSelector((state) => state.products.products); // Fetch products from Redux store
-
-    // Fake API call or data fetch to simulate fetching products from an API
-    // useEffect(() => {
-
-    //     dispatch(setProducts(allProducts)); // Set fetched products to the Redux store
-    // }, [dispatch]);
+    const products = useSelector((state) => state.products.products);
+    // console.log(products)
 
     const handleAlignment = (event, newAlignment) => {
         setAlignment(newAlignment);
     };
 
     const handleClickOpen = (product) => {
-        setSelectedProduct(product); // Set the selected product
+        setSelectedProduct(product);
         setOpen(true);
     };
 
@@ -43,73 +38,84 @@ const Main = () => {
         setOpen(false);
     };
 
+    // دالة للتنقل بين المنتجات بشكل سلس
+    const scrollCarousel = (direction) => {
+        if (carouselRef.current) {
+            const scrollAmount = direction === "left" ? -300 : 300; // كمية التمرير
+            // @ts-ignore
+            carouselRef.current.scrollBy({
+                left: scrollAmount,
+                behavior: "smooth", // يجعل الحركة سلسة
+            });
+        }
+    };
+
     return (
         <Container sx={{ py: 9, mt: 1 }}>
-            <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"} flexWrap={"wrap"} gap={3}>
-                <Box>
-                    <Typography variant="h6">Selected Products</Typography>
-                    <Typography fontWeight={300} variant="body1">All our arrivals in an exclusive brand selection</Typography>
-                </Box>
-
-                <ToggleButtonGroup
-                    color="error"
-                    value={alignment}
-                    exclusive
-                    onChange={handleAlignment}
-                    aria-label="text alignment"
+            <Box display={'flex'} alignItems={"center"} justifyContent={"space-between"}>
+            <Typography variant="h5" sx={{ mb: 4 }}>Deals Of The Day</Typography>
+            <Box sx={{  display: 'flex', justifyContent: 'flex-end' }}>
+                <Button variant="contained" color="error" component={Link} to="/gallery">
+                    More Products
+                </Button>
+            </Box>
+            </Box>
+           
+            <Stack direction="row" alignItems="center" justifyContent="space-between">
+                <IconButton onClick={() => scrollCarousel("left")}>
+                    <ArrowBackIos />
+                </IconButton>
+                <Stack
+                    direction="row"
+                    spacing={2}
+                    flexWrap="nowrap"
                     sx={{
-                        ".Mui-selected": {
-                            border: "1px solid rgba(233,69,96,0.5) !important",
-                            color: "#e94560",
-                            backgroundColor: "initial",
+                        overflowX: "auto",
+                        scrollBehavior: "smooth",
+                        '&::-webkit-scrollbar': {
+                            height: '8px',
                         },
+                        '&::-webkit-scrollbar-thumb': {
+                            backgroundColor: '#888',
+                            borderRadius: '10px',
+                            transition: 'background-color 0.3s ease',
+                        },
+                        '&::-webkit-scrollbar-thumb:hover': {
+                            backgroundColor: '#555',
+                        }
                     }}
+                    ref={carouselRef}
                 >
-                    <ToggleButton sx={{ color: theme.palette.text.primary }} value="left" aria-label="left aligned">
-                        All Products
-                    </ToggleButton>
-                    <ToggleButton sx={{ mx: "16px !important", color: theme.palette.text.primary }} value="center" aria-label="center aligned">
-                        Men Category
-                    </ToggleButton>
-                    <ToggleButton sx={{ color: theme.palette.text.primary }} value="right" aria-label="right aligned">
-                        Women Category
-                    </ToggleButton>
-                </ToggleButtonGroup>
-            </Stack>
-
-            <Stack direction={"row"} flexWrap={"wrap"} justifyContent={"space-between"}>
-                {products.map((product) => (
-                    <Card key={product.id} sx={{ maxWidth: 333, mt: 6, ":hover .MuiCardMedia-root": { rotate: "1deg", scale: "1.1", transition: "0.35s" } }}>
-                        <CardMedia
-                            sx={{ height: 240 }}
-                            image={product.image}
-                            title={product.name}
-                        />
-                        <CardContent>
-                            <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
-                                <Typography gutterBottom variant="h6" component={"div"}>
+                    {products.map((product) => (
+                        <Card key={product.id} sx={{ minWidth: 250, maxWidth: 300 }}>
+                            <CardMedia
+                                sx={{ height: 200 }}
+                                image={typeof(product.Image) === 'string'? product.image :  images[product.image]}
+                                title={product.name}
+                            />
+                            <CardContent>
+                                <Typography gutterBottom variant="h6" component="div">
                                     {product.name}
                                 </Typography>
                                 <Typography variant="subtitle1" component="p">
-                                    ${product.price.toFixed(2)}
+                                ${product.price ? product.price.toFixed(2) : 'N/A'}
                                 </Typography>
-                            </Stack>
-                            <Typography variant="body2" color="text.secondary">
-                                {product.description}
-                            </Typography>
-                        </CardContent>
-
-                        <CardActions sx={{ justifyContent: "space-between" }}>
-                            <Button onClick={() => handleClickOpen(product)} sx={{ textTransform: "capitalize" }} size="large">
-                                <AddShoppingCartIcon sx={{ mr: 1 }} fontSize="small" />
-                                Add to cart
-                            </Button>
-
-                            <Rating precision={0.5} name="read-only" value={product.rating} readOnly />
-                        </CardActions>
-                    </Card>
-                ))}
+                                <Rating precision={0.5} name="read-only" value={product.rating} readOnly />
+                            </CardContent>
+                            <CardActions sx={{ justifyContent: "center" }}>
+                                <Button onClick={() => handleClickOpen(product)} variant="outlined" color="error" startIcon={<AddShoppingCartIcon />}>
+                                    Add To Cart
+                                </Button>
+                            </CardActions>
+                        </Card>
+                    ))}
+                </Stack>
+                <IconButton onClick={() => scrollCarousel("right")}>
+                    <ArrowForwardIos />
+                </IconButton>
             </Stack>
+
+          
 
             <Dialog
                 sx={{ ".MuiPaper-root": { minWidth: { xs: "100%", md: 800 } } }}

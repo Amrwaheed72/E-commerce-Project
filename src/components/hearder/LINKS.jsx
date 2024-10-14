@@ -6,9 +6,10 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Link } from "react-router-dom";
-
+import { useTheme } from "@emotion/react";
 // eslint-disable-next-line react/prop-types
 const LINKS = ({ title }) => {
+    const theme = useTheme();
     return (
         <Box sx={{
             position: "relative",
@@ -20,7 +21,7 @@ const LINKS = ({ title }) => {
             <Typography variant="body1">
                 {title}
             </Typography>
-            <ExpandMore sx={{ fontSize: "16px", ml: 1, color: "white" }} ></ExpandMore>
+            <ExpandMore sx={{ fontSize: "16px", ml: 1, color: "primary" }} ></ExpandMore>
             <Box className="show"
                 sx={{
                     position: "absolute",
@@ -49,7 +50,7 @@ const LINKS = ({ title }) => {
                                     <ListItemText sx={{
                                         ".MuiTypography-root": { fontSize: "15px" }
                                     }} primary="Products" />
-                                    <ArrowForwardIosIcon sx={{ fontSize: "15px" }} />
+                                    <ArrowForwardIosIcon sx={{ fontSize: "15px", color:"primary" }} />
                                 </ListItemButton>
                                 <Box className="sub-link"
                                     sx={{ position: "absolute", top: 0, left: "100%", display: "none" }}>
@@ -57,10 +58,8 @@ const LINKS = ({ title }) => {
                                         <nav aria-label="secondary mailbox folders">
                                             <List>
                                                 <ListItem disablePadding>
-                                                    <ListItemButton>
-                                                        <Link to='add'>
-                                                            <ListItemText primary="Add Product" />
-                                                        </Link>
+                                                    <ListItemButton  component={Link} to="/add" >
+                                                            Add Product
                                                     </ListItemButton>
                                                 </ListItem>
                                                 <ListItem disablePadding>
