@@ -91,10 +91,10 @@ const AddProduct = () => {
                                 label="Category"
                                 onChange={(e) => setCategory(e.target.value)}
                             >
-                                <MenuItem value="Bikes">Bikes</MenuItem>
-                                <MenuItem value="Electronics">Electronics</MenuItem>
-                                <MenuItem value="Books">Books</MenuItem>
-                                <MenuItem value="Games">Games</MenuItem>
+                                <MenuItem value="Men">Men</MenuItem>
+                                <MenuItem value="Women">Women</MenuItem>
+                                <MenuItem value="Unisex">Unisex</MenuItem>
+                            
                             </Select>
                         </FormControl>
                     </Grid>

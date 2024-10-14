@@ -1,240 +1,411 @@
 {
-  "users": [],
-  "products": [
+  "users": [
     {
-      "id": "1",
-      "name": "T-Shirt 1",
-      "price": 15.99,
-      "description": "Comfortable cotton T-shirt",
-      "image": 0,
-      "gallery": [1, 2],
-      "rating": 4.5
+      "id": "df6f",
+      "creatorId": 1,
+      "name": "amir@gmail.com",
+      "email": "amir@gmail.com",
+      "password": "amir@gmail.com1",
+      "adminUser": true
     },
     {
-      "id": "2",
+      "id": "c534",
+      "name": "test",
+      "email": "test1@gmail.com",
+      "password": "test1@gmail.com",
+      "adminUser": false
+    },
+    {
+      "id": "756f",
+      "name": "a@gmail.com",
+      "email": "test11@gmail.com",
+      "password": "test11@gmail.com",
+      "adminUser": true
+    },
+    {
+      "id": "f4f1",
+      "name": "botato",
+      "email": "botato5@gmail.com",
+      "password": "botato5@gmail.com",
+      "adminUser": false
+    },
+    {
+      "id": "e471",
+      "name": "TEST",
+      "email": "test1111@gmail.com",
+      "password": "test1111@gmail.com",
+      "adminUser": true
+    },
+    {
+      "id": "f031",
+      "name": "aa",
+      "email": "aaa1@gmail.com",
+      "password": "aaa1@gmail.com",
+      "adminUser": true
+    },
+    {
+      "id": "7f4e",
+      "name": "test555@gmail.com",
+      "email": "test555@gmail.com",
+      "password": "test555@gmail.com",
+      "adminUser": true
+    },
+    {
+      "id": "480d",
+      "name": "t",
+      "email": "t2@g.com",
+      "password": "t2@g.com",
+      "adminUser": true
+    },
+    {
+      "id": "9ba4",
+      "name": "Amr",
+      "email": "amr@gmail.com",
+      "password": "aammrraammrr012012&",
+      "adminUser": true
+    },
+    {
+      "id": "43d9",
+      "name": "Amr",
+      "email": "Amr12@gmail.com",
+      "password": "amramramr123&",
+      "adminUser": true
+    },
+    {
+      "id": "1461",
+      "name": "ahmed mohamed",
+      "email": "ahmed@gmail.com",
+      "password": "ahmedahmed123&",
+      "adminUser": true
+    },
+    {
+      "id": "b612",
+      "name": "Amr",
+      "email": "Amr@gmail.com",
+      "password": "amramramr12&",
+      "adminUser": true
+    },
+    {
+      "id": "7f1c",
+      "name": "amirr",
+      "email": "amirrr@gmail.com",
+      "password": "amiramir12&",
+      "adminUser": false
+    },
+    {
+      "id": "f529",
+      "name": "ahmed mohamed",
+      "email": "ahmedddd@gmail.com",
+      "password": "ahmedahmed12&",
+      "adminUser": true
+    }
+  ],
+  "products": [
+    {
+      "id": "1728935385501",
+      "creatorId": 1,
       "name": "T-Shirt 2",
       "price": 16.99,
       "description": "Graphic T-shirt with cool print",
       "image": 3,
-      "gallery": [4, 5],
-      "rating": 4.7
+      "gallery": [
+        4,
+        5
+      ],
+      "rating": 4.7,
+      "category": "Men"
     },
     {
-      "id": "3",
+      "id": "1728935385514",
+      "creatorId": 1,
       "name": "Jeans",
       "price": 39.99,
       "description": "Slim-fit blue jeans",
       "image": 6,
-      "gallery": [7, 8],
-      "rating": 4
+      "gallery": [
+        7,
+        8
+      ],
+      "rating": 4,
+      "category": "Men"
     },
     {
-      "id": "4",
+      "id": "1728935385525",
+      "creatorId": 1,
       "name": "Sneakers",
       "price": 59.99,
       "description": "Stylish sneakers for everyday wear",
       "image": 9,
-      "gallery": [10, 11],
-      "rating": 4.8
+      "gallery": [
+        10,
+        11
+      ],
+      "rating": 4.8,
+      "category": "Unisex"
     },
     {
-      "id": "5",
+      "id": "1728935385536",
+      "creatorId": 1,
       "name": "Hoodie",
       "price": 34.99,
       "description": "Warm and comfortable hoodie",
       "image": 12,
-      "gallery": [13, 14],
-      "rating": 4.6
+      "gallery": [
+        13,
+        14
+      ],
+      "rating": 4.6,
+      "category": "Unisex"
     },
     {
-      "id": "6",
-      "name": "Cap",
-      "price": 14.99,
-      "description": "Trendy cap for sunny days",
-      "image": 15,
-      "gallery": [16, 17],
-      "rating": 4.3
-    },
-    {
-      "id": "7",
+      "id": "1728935385560",
+      "creatorId": 1,
       "name": "T-Shirt 3",
       "price": 17.99,
       "description": "Classic round neck T-shirt",
       "image": 18,
-      "gallery": [19, 20],
-      "rating": 4.5
+      "gallery": [
+        19,
+        20
+      ],
+      "rating": 4.5,
+      "category": "Men"
     },
     {
-      "id": "8",
+      "id": "1728935385571",
+      "creatorId": 1,
       "name": "T-Shirt 4",
       "price": 18.99,
       "description": "Casual short-sleeve T-shirt",
       "image": 21,
-      "gallery": [22, 23],
-      "rating": 4.4
+      "gallery": [
+        22,
+        23
+      ],
+      "rating": 4.4,
+      "category": "Men"
     },
     {
-      "id": "9",
+      "id": "1728935385583",
+      "creatorId": 1,
       "name": "T-Shirt 5",
       "price": 19.99,
       "description": "Comfortable printed T-shirt",
       "image": 24,
-      "gallery": [25, 26],
-      "rating": 4.6
+      "gallery": [
+        25,
+        26
+      ],
+      "rating": 4.6,
+      "category": "Men"
     },
     {
-      "id": "10",
+      "id": "1728935385592",
+      "creatorId": 1,
       "name": "Polo Shirt",
       "price": 25.99,
       "description": "Classic polo shirt for a smart look",
       "image": 27,
-      "gallery": [28, 29],
-      "rating": 4.5
+      "gallery": [
+        28,
+        29
+      ],
+      "rating": 4.5,
+      "category": "Men"
     },
     {
-      "id": "11",
-      "name": "Tank Top",
-      "price": 12.99,
-      "description": "Lightweight tank top for summer",
-      "image": 30,
-      "gallery": [31, 32],
-      "rating": 4.3
-    },
-    {
-      "id": "12",
+      "id": "1728935385614",
+      "creatorId": 1,
       "name": "Button-Up Shirt",
       "price": 29.99,
       "description": "Formal button-up shirt for office wear",
       "image": 33,
-      "gallery": [34, 35],
-      "rating": 4.6
+      "gallery": [
+        34,
+        35
+      ],
+      "rating": 4.6,
+      "category": "Men"
     },
     {
-      "id": "13",
+      "id": "1728935385624",
+      "creatorId": 1,
       "name": "Sweatshirt",
       "price": 29.99,
       "description": "Cozy sweatshirt for chilly days",
       "image": 36,
-      "gallery": [37, 38],
-      "rating": 4.4
+      "gallery": [
+        37,
+        38
+      ],
+      "rating": 4.4,
+      "category": "Unisex"
     },
     {
-      "id": "14",
+      "id": "1728935385636",
+      "creatorId": 1,
       "name": "Joggers",
       "price": 34.99,
       "description": "Comfortable joggers for lounging",
       "image": 39,
-      "gallery": [40, 41],
-      "rating": 4.5
+      "gallery": [
+        40,
+        41
+      ],
+      "rating": 4.5,
+      "category": "Unisex"
     },
     {
-      "id": "15",
+      "id": "1728935385648",
+      "creatorId": 1,
       "name": "Shorts",
       "price": 24.99,
       "description": "Casual shorts for summer days",
       "image": 42,
-      "gallery": [43, 44],
-      "rating": 4.3
+      "gallery": [
+        43,
+        44
+      ],
+      "rating": 4.3,
+      "category": "Men"
     },
     {
-      "id": "16",
+      "id": "1728935385658",
+      "creatorId": 1,
       "name": "Windbreaker",
-      "price": 39.99,
+      "price": "49.99",
       "description": "Lightweight windbreaker jacket",
       "image": 45,
-      "gallery": [46, 47],
-      "rating": 4.6
+      "gallery": [
+        46,
+        47
+      ],
+      "rating": 4.6,
+      "category": "Unisex"
     },
     {
-      "id": "17",
+      "id": "1728935385676",
+      "creatorId": 1,
       "name": "Pajama Set",
       "price": 35.99,
       "description": "Cozy pajama set for a good night's sleep",
       "image": 48,
-      "gallery": [49, 50],
-      "rating": 4.7
+      "gallery": [
+        49,
+        50
+      ],
+      "rating": 4.7,
+      "category": "Women"
     },
     {
-      "id": "18",
-      "name": "Swim Shorts",
-      "price": 29.99,
-      "description": "Stylish swim shorts for the beach",
-      "image": 51,
-      "gallery": [52, 53],
-      "rating": 4.5
-    },
-    {
-      "id": "19",
-      "name": "Beanie",
-      "price": 14.99,
-      "description": "Warm beanie for winter",
-      "image": 54,
-      "gallery": [55, 56],
-      "rating": 4.4
-    },
-    {
-      "id": "20",
+      "id": "1728935385823",
+      "creatorId": 1,
       "name": "Scarf",
       "price": 19.99,
       "description": "Soft scarf for cold weather",
       "image": 57,
-      "gallery": [58, 59],
-      "rating": 4.5
+      "gallery": [
+        58,
+        59
+      ],
+      "rating": 4.5,
+      "category": "Women"
     },
     {
-      "id": "21",
+      "id": "1728935385834",
+      "creatorId": 1,
       "name": "T-Shirt 6",
       "price": 15.99,
       "description": "Comfortable cotton T-shirt",
       "image": 60,
-      "gallery": [61, 62],
-      "rating": 4.5
+      "gallery": [
+        61,
+        62
+      ],
+      "rating": 4.5,
+      "category": "Men"
     },
     {
-      "id": "22",
+      "id": "1728935385846",
+      "creatorId": 1,
       "name": "T-Shirt 7",
       "price": 15.99,
       "description": "Comfortable cotton T-shirt",
       "image": 63,
-      "gallery": [64, 65],
-      "rating": 4.5
+      "gallery": [
+        64,
+        65
+      ],
+      "rating": 4.5,
+      "category": "Men"
     },
     {
-      "id": "23",
+      "id": "1728935385960",
+      "creatorId": 1,
       "name": "T-Shirt 8",
       "price": 15.99,
       "description": "Comfortable cotton T-shirt",
       "image": 66,
-      "gallery": [67, 68],
-      "rating": 4.5
+      "gallery": [
+        67,
+        68
+      ],
+      "rating": 4.5,
+      "category": "Men"
     },
     {
-      "id": "24",
+      "id": "1728935385971",
+      "creatorId": 1,
       "name": "T-Shirt 9",
       "price": 15.99,
       "description": "Comfortable cotton T-shirt",
       "image": 69,
-      "gallery": [70, 71],
+      "gallery": [
+        70,
+        71
+      ],
+      "rating": 4.5,
+      "category": "Men"
+    },
+    {
+      "id": "1728936735549",
+      "name": "update 3",
+      "description": "update",
+      "price": "100",
+      "category": "Women",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxP9vZzZrvPX0fJyzk5lgwnBr-Q5I2cg2dsg&s",
+      "gallery": [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxP9vZzZrvPX0fJyzk5lgwnBr-Q5I2cg2dsg&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxP9vZzZrvPX0fJyzk5lgwnBr-Q5I2cg2dsg&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxP9vZzZrvPX0fJyzk5lgwnBr-Q5I2cg2dsg&s"
+      ],
+      "rating": 5
+    },
+    {
+      "id": 1728939697082,
+      "name": "Amr",
+      "description": "asasfasfasf",
+      "price": 120,
+      "category": "Men",
+      "image": "515615",
+      "gallery": [
+        "amr",
+        "amr"
+      ],
       "rating": 4.5
     },
     {
-      "id": "25",
-      "name": "T-Shirt 10",
-      "price": 15.99,
-      "description": "Comfortable cotton T-shirt",
-      "image": 72,
-      "gallery": [73, 74],
-      "rating": 4.5
-    },
-    {
-      "id": 1728848577652,
-      "name": "ds",
-      "description": "dsds",
-      "price": 100,
-      "category": "Electronics",
-      "image": "dsds",
-      "gallery": ["dsds", "sdsds", "dsds"],
-      "rating": 2.5
+      "id": 1728939963537,
+      "name": "Amr",
+      "description": "asfaskjflkajfsklasf",
+      "price": 15000,
+      "category": "Men",
+      "image": "5",
+      "gallery": [
+        "7",
+        "2"
+      ],
+      "rating": 5
     }
   ]
 }

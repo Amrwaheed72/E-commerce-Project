@@ -49,19 +49,19 @@ const ExclusiveCollections = () => {
           >
             <Typography
               variant="subtitle1"
-              sx={{ color: "#3c3c3c", fontWeight: "bold" }}
+              sx={{ color: "#fff", fontWeight: "bold" }}
             >
               #NEW_YEAR
             </Typography>
-            <Typography variant="h5" sx={{ color: "#3c3c3c", fontWeight: "bold" }}>
+            <Typography variant="h5" sx={{ color: "#fff", fontWeight: "bold" }}>
               WOMEN EXCLUSIVE
             </Typography>
             <Button
               variant="outlined"
               sx={{
                 marginTop: 2,
-                color: "#3c3c3c",
-                borderColor: "#3c3c3c",
+                color: "#fff",
+                borderColor: "#fff",
                 "&:hover": {
                   backgroundColor: "#3c3c3c",
                   color: "#fff",

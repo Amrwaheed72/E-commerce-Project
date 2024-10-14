@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Box, Card, CardContent, Typography, Button, TextField, Grid, Snackbar, Alert } from '@mui/material';
 
 const EditProfile = () => {
-    const user = JSON.parse(localStorage.getItem('userData')); // Fetch user data from localStorage
+    const user = JSON.parse(sessionStorage.getItem('userData')); // Fetch user data from localStorage
     const [name, setName] = useState(user ? user.name : '');
     const [email, setEmail] = useState(user ? user.email : '');
     const [password, setPassword] = useState('');
@@ -29,7 +29,7 @@ const EditProfile = () => {
             updatedUser.password = password; // Include password only if provided
         }
 
-        localStorage.setItem('userData', JSON.stringify(updatedUser));
+        sessionStorage.setItem('userData', JSON.stringify(updatedUser));
         setSnackbarMessage("Profile updated successfully!"); // Set success message
         setSnackbarOpen(true); // Open the Snackbar
         setError(""); // Clear any previous error

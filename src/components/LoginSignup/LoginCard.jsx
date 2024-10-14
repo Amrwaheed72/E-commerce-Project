@@ -10,7 +10,7 @@ const LoginCard = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { error, loading, isLoggedIn } = useSelector((state) => state.user);
+    const { error, loading, isLoggedIn, userInfo } = useSelector((state) => state.user);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -27,15 +27,24 @@ const LoginCard = () => {
         e.preventDefault();
         if (isEmailValid && password) {
             await dispatch(loginUser({ email, password }));
+            sessionStorage.setItem("userData", JSON.stringify({ name: "amir", email, password }))
         }
     };
 
-    // Navigate to home page after successful login
+    // Handle session storage based on admin status after successful login
     useEffect(() => {
-        if (isLoggedIn) {
-            navigate('/');
+        sessionStorage.setItem("isLoggedIn", isLoggedIn)
+        if (isLoggedIn && userInfo) {
+            console.log(userInfo)
+            console.log(userInfo.adminUser)
+            if (userInfo.adminUser) {
+                sessionStorage.setItem('admin', 'true');
+            } else {
+                sessionStorage.setItem('admin', 'false');
+            }
+            navigate('/'); // Navigate to home after setting the session storage
         }
-    }, [isLoggedIn, navigate]);
+    }, [isLoggedIn, userInfo, navigate]);
 
     return (
         <div className="botato" style={{

@@ -38,7 +38,7 @@ const LINKS = ({ title }) => {
                         <List>
 
                             <ListItem disablePadding>
-                                <ListItemButton>
+                                <ListItemButton component={Link} to="/dashboard">
                                     <ListItemText sx={{
                                         ".MuiTypography-root": { fontSize: "15px" }
                                     }} primary="Dashboard" />

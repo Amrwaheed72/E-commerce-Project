@@ -19,46 +19,49 @@ import CardMedia from "@mui/material/CardMedia";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Close } from "@mui/icons-material";
 import ProductDetails from "../main/ProductDetails";
-import { useSelector } from "react-redux"; // Import hooks
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Header1 from "components/hearder/Header1";
 import Header2 from "components/hearder/Header2";
 import Header3 from "components/hearder/Header3";
 import Fashion from "components/fashion/Fashion";
-
 import { images } from '../../images';
-// import { setProducts } from "../../redux/productSlice"; // Import the action from the product slice
 
-// import { allProducts } from '../../products';
 const Gallery = () => {
   const [alignment, setAlignment] = useState("left");
   const [open, setOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null); // State to hold selected product data
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const theme = useTheme();
 
-  // Redux hooks
-  // const dispatch = useDispatch();
   // @ts-ignore
-  const products = useSelector((state) => state.products.products); // Fetch products from Redux store
-
-  // Fake API call or data fetch to simulate fetching products from an API
-  // useEffect(() => {
-
-  //     dispatch(setProducts(allProducts)); // Set fetched products to the Redux store
-  // }, [dispatch]);
+  const products = useSelector((state) => state.products.products);
 
   const handleAlignment = (event, newAlignment) => {
-    setAlignment(newAlignment);
+    if (newAlignment !== null) {
+      setAlignment(newAlignment);
+    }
   };
 
   const handleClickOpen = (product) => {
-    setSelectedProduct(product); // Set the selected product
+    setSelectedProduct(product);
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
+
+  // Filter products based on selected category
+  const filteredProducts = products.filter((product) => {
+    if (alignment === "left") {
+      return true; // Show all products
+    } else if (alignment === "center") {
+      return product.category === "Unisex" || product.category === "Men";
+    } else if (alignment === "right") {
+      return product.category === "Unisex" || product.category === "Women";
+    }
+    return true;
+  });
 
   return (
     <>
@@ -119,27 +122,38 @@ const Gallery = () => {
           </ToggleButtonGroup>
         </Stack>
 
-            <Stack direction={"row"} flexWrap={"wrap"} justifyContent={"space-between"}>
-                {products.map((product) => (
-                    <Card key={product.id} sx={{ maxWidth: 333, mt: 6, ":hover .MuiCardMedia-root": { rotate: "1deg", scale: "1.1", transition: "0.35s" } }}>
-                        <CardMedia
-                            sx={{ height: 240 }}
-                            image={typeof(product.Image) === 'string'? product.image :  images[product.image]}
-                            title={product.name}
-                        />
-                        <CardContent>
-                            <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
-                                <Typography gutterBottom variant="h6" component={"div"}>
-                                    {product.name}
-                                </Typography>
-                                <Typography variant="subtitle1" component="p">
-                                    ${product.price}
-                                </Typography>
-                            </Stack>
-                            <Typography variant="body2" color="text.secondary">
-                                {product.description}
-                            </Typography>
-                        </CardContent>
+        <Stack direction={"row"} flexWrap={"wrap"} justifyContent={"space-between"}>
+          {filteredProducts.map((product) => (
+            <Card
+              key={product.id}
+              sx={{
+                maxWidth: 333,
+                mt: 6,
+                ":hover .MuiCardMedia-root": {
+                  rotate: "1deg",
+                  scale: "1.1",
+                  transition: "0.35s",
+                },
+              }}
+            >
+              <CardMedia
+                sx={{ height: 240 }}
+                image={typeof product.Image === "string" ? product.image : images[product.image]}
+                title={product.name}
+              />
+              <CardContent>
+                <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"}>
+                  <Typography gutterBottom variant="h6" component={"div"}>
+                    {product.name}
+                  </Typography>
+                  <Typography variant="subtitle1" component="p">
+                    ${product.price}
+                  </Typography>
+                </Stack>
+                <Typography variant="body2" color="text.secondary">
+                  {product.description}
+                </Typography>
+              </CardContent>
 
               <CardActions sx={{ justifyContent: "space-between" }}>
                 <Button
@@ -159,7 +173,7 @@ const Gallery = () => {
                   readOnly
                 />
               </CardActions>
-                  <Box sx={{ display: "flex", justifyContent: "center", mt: 1, mb:2 }}>
+              <Box sx={{ display: "flex", justifyContent: "center", mt: 1, mb: 2 }}>
                 <Link to={`/product/${product.id}`}>
                   <Button variant="contained" color="error">
                     View Details

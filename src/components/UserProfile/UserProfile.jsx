@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const UserProfile = () => {
     const navigate = useNavigate();
-    const user = JSON.parse(localStorage.getItem('userData')); // Fetch user data from localStorage
+    const user = JSON.parse(sessionStorage.getItem('userData')); // Fetch user data from localStorage
     const [editMode, setEditMode] = useState(false);
     const [name, setName] = useState(user ? user.name : '');
     const [email, setEmail] = useState(user ? user.email : '');

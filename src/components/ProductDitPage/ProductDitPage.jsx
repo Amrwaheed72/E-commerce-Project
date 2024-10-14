@@ -69,7 +69,7 @@ const ProductDetail = () => {
   const isUserLoggedIn = () => {
     // Implement your user login check here
     // This is just a mock example; replace with actual logic
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(sessionStorage.getItem('user'));
     return user !== null; // or however you check if a user is logged in
   };
 

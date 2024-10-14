@@ -17,7 +17,7 @@ const SignupCard = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
+  const [adminUser, setAdminUser] = useState(false);
   const [passwordCriteria, setPasswordCriteria] = useState({
     hasLetter: false,
     hasNumber: false,
@@ -41,10 +41,29 @@ const SignupCard = () => {
 
   const handleClickShowPassword = () => setShowPassword((prev) => !prev);
   const handleClickShowConfirmPassword = () => setShowConfirmPassword((prev) => !prev);
-  const handleRememberMeChange = (e) => setRememberMe(e.target.checked);
+  const handleadminUserChange = (e) => setAdminUser(e.target.checked);
 
   const isEmailValid = email === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isPasswordMatch = confirmPassword === '' || password === confirmPassword;
+
+  const handler = async () => {
+    try {
+        const res = await fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password, adminUser }),
+        });
+  
+        if (res.ok) {
+            console.log(await res.json())
+          return await res.json();
+        } else {
+          throw new Error('Failed to add signup');
+        }
+      } catch (error) {
+        return new Error(error.message);
+      }
+}
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,11 +75,11 @@ const SignupCard = () => {
       passwordCriteria.hasSpecialChar
     ) {
       // Dispatch the signup action
-      const result = await dispatch(signupUser({ name, email, password }));
-
+      const result = await dispatch(signupUser({ name, email, password, adminUser }));
       if (!result.error) {
         // Store user data in local storage
-        localStorage.setItem('userData', JSON.stringify({ name, email }));
+        sessionStorage.setItem('userData', JSON.stringify({ name, email }));
+        sessionStorage.setItem("admin", "true")
         navigate('/login');
       }
     }
@@ -148,8 +167,8 @@ const SignupCard = () => {
           </div>
 
           <FormControlLabel
-            control={<Checkbox checked={rememberMe} onChange={handleRememberMeChange} />}
-            label="Remember me"
+            control={<Checkbox checked={adminUser} onChange={handleadminUserChange} />}
+            label="Admin user"
           />
 
           <Button

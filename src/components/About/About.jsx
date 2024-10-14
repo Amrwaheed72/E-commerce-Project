@@ -506,7 +506,7 @@ const About = () => {
                         {
                             name: 'Amr Waheed',
                             role: 'Developer',
-                            img: '../../public/Amr.jpg',
+                            img: '../../public/user.jpg',
                             facebook: 'https://www.facebook.com/amr.mohamed.5437',
                             github: 'https://github.com/Amrwaheed72',
                             linkedin: 'https://www.linkedin.com/in/amr-waheed-4374a9288/',

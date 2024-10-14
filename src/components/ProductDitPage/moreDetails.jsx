@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import Header2 from 'components/hearder/Header2';
 import Header3 from 'components/hearder/Header3';
 import useAuthCheck from '../LoginSignup/useAuthCheck '; // Adjust the import path as needed
+import { images } from '../../images';
 
 const ProductDetail = () => {
     const [tabValue, setTabValue] = useState(0);
@@ -14,7 +15,7 @@ const ProductDetail = () => {
 
     // Retrieve product details from the Redux store
     const productDetails = useSelector((state) =>
-        state.products.products.find((product) => product.id === parseInt(id))
+        state.products.products.find((product) => product.id == parseInt(id))
     );
 
     useEffect(() => {
@@ -75,11 +76,7 @@ const ProductDetail = () => {
                                 component="img"
                                 alt={productDetails.name}
                                 height="400"
-                                image={
-                                    productDetails.image
-                                        ? productDetails.image
-                                        : 'fallback-image-url.jpg' // Handle missing image case
-                                }
+                                image={typeof(productDetails.Image) === 'string'? productDetails.image :  images[productDetails.image]}
                                 sx={{ objectFit: 'contain' }}
                             />
                         </Card>
@@ -88,7 +85,7 @@ const ProductDetail = () => {
                                 productDetails.gallery.map((img, index) => (
                                     <img
                                         key={index}
-                                        src={img || 'default-gallery-image.jpg'} // Handle missing gallery image
+                                        src={typeof (img.image) === 'string' ? img : images[img]}
                                         alt={`Gallery image ${index + 1}`}
                                         style={{
                                             width: 50,

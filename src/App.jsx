@@ -21,6 +21,8 @@ import ProductDetail from "components/ProductDitPage/moreDetails";
 import Profile from "./pages/Profile";
 import EditProf from "./pages/EditProf";
 import Gallery from './components/gallery/Gallery';
+import Dashboard from "components/dashboard/Dashboard";
+import { setUsers } from "./redux/userSlice";
 
 
 function App() {
@@ -35,6 +37,9 @@ function App() {
     fetch('http://localhost:5000/products')
       .then(response => response.json())
       .then(data => dispatch(setProducts(data)));
+    fetch('http://localhost:5000/users')
+      .then(response => response.json())
+      .then(data => dispatch(setUsers(data)));
   }, [dispatch]);
 
   return (
@@ -56,6 +61,8 @@ function App() {
               {/* <Route path="/" element={<Hero />} /> */}
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/about" element={<AboutUs />} />
@@ -63,7 +70,8 @@ function App() {
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/cart" element={<Cart />} />
-              <Route path="/add" element={<AddProduct />} />
+              <Route path="/manager/add" element={<AddProduct />} /> {/*  insinde the manager page that will be made */}
+              <Route path="/manager" element={<Dashboard />} />
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/edit-profile" element={<EditProf />} />

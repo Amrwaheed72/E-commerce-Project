@@ -26,10 +26,10 @@ const Fashion = () => {
 
       {/* Sports (Text on top of the image) */}
       <Grid item xs={12} md={3}>
-        <Card sx={{ position: 'relative', height: '95%' }}>
+        <Card sx={{ position: 'relative', height: '90%' }}>
           <CardMedia
             component="img"
-            image="fashion.png"
+            image="../../../public/adel.jpeg"
             alt="Sports"
             sx={{ height: '100%' }}
           />
@@ -48,8 +48,8 @@ const Fashion = () => {
               flexDirection: 'column',
             }}
           >
-            <Typography variant="h4" sx={{ fontWeight: 'bold'  }}>
-              SPORTS
+            <Typography variant="h5" sx={{ fontWeight: 'bold'  }}>
+              President Adel Shakal
             </Typography>
             <Typography variant="subtitle1">#NEW</Typography>
           </Box>
@@ -58,10 +58,10 @@ const Fashion = () => {
 
      {/* Women */}
       <Grid item xs={12} md={3}>
-        <Card sx={{ position: 'relative', height: '95%' }}>
+        <Card sx={{ position: 'relative', height: '90%' }}>
           <CardMedia
             component="img"
-            image="banner-41.png"
+            image="../../../public/banner-41.webp"
             alt="Coupons"
             sx={{ height: '100%' }}
           />
@@ -81,9 +81,9 @@ const Fashion = () => {
             }}
           >
             <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
-            WOMEN
+            Men
             </Typography>
-            <Typography variant="subtitle1">#DRESS</Typography>
+            <Typography variant="subtitle1">#Jacket</Typography>
           </Box>
         </Card>
           </Grid>
