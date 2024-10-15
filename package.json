@@ -1,5 +1,6 @@
 {
   "name": "ecommerce",
+  "homepage": "https://Amrwaheed72.github.io/E-commerce-Project-Front-End-",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,7 +9,9 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "json-server --watch db.json --port 5000"
+    "server": "json-server --watch db.json --port 5000",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
@@ -17,6 +20,7 @@
     "@mui/joy": "^5.0.0-beta.48",
     "@mui/material": "^6.1.2",
     "@reduxjs/toolkit": "^2.2.8",
+    "gh-pages": "^6.2.0",
     "json-server": "^1.0.0-beta.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
